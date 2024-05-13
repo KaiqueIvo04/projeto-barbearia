@@ -1,11 +1,11 @@
-const Express = require('express');
+import Express from 'express'
 
 //-----------------Roteador-----------------
 const authRoute = Express.Router();
 
 //-------------Funções para Login------------------
-const { getMe, protect, login, register } = require('../../controllers/AuthController/index');
-const { getMedicById } = require('../../controllers/MedicController');
+import { getMe, protect, login, register } from '../../controllers/AuthController/index';
+import { getMedicById } from '../../controllers/MedicController';
 
 authRoute.route('/login')
     .post(login);
