@@ -1,15 +1,15 @@
-import { Router } from 'express';
+const Express = require('express');
 
 //Roteador
-const adminRoute = Router();
+const adminRoute = Express.Router();
 
 //Funções
 
-import { createAdmin, 
+const { createAdmin, 
     getAdmins, 
     getAdminById, 
     updateAdmin, 
-    deleteAdmin } from '../../controllers/AdminController/index';
+    deleteAdmin } = require('../../controllers/AdminController/index');
 
 //rotas 
 
@@ -22,4 +22,4 @@ adminRoute.route('/:id')
     .patch(updateAdmin) 
     .delete(deleteAdmin) 
 
-export default adminRoute;
+module.exports = adminRoute;

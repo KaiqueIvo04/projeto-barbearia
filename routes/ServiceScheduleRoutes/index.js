@@ -1,15 +1,15 @@
-import { Router } from 'express';
+const Express = require('express');
 
 //Roteador
-const serviceScheduleRoute = Router();
+const serviceScheduleRoute = Express.Router();
 
 //Funções
 
-import { createServiceSchedule, 
+const { createServiceSchedule, 
     getServiceSchedules, 
     getServiceScheduleById, 
     updateServiceSchedule, 
-    deleteServiceSchedule } from '../../controllers/ServiceScheduleController/index';
+    deleteServiceSchedule } = require('../../controllers/ServiceScheduleController/index');
 
 //rotas 
 
@@ -22,4 +22,4 @@ serviceScheduleRoute.route('/:id')
     .patch(updateServiceSchedule) 
     .delete(deleteServiceSchedule) 
 
-export default serviceScheduleRoute;
+module.exports = serviceScheduleRoute;

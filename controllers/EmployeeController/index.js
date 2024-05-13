@@ -1,4 +1,4 @@
-import Employee from '../../models/Employee';
+const Employee = require('../../models/Employee');
 
 const createEmployee = async (req, res) => {
     const bodyData = req.body; //Pega o body da requisição
@@ -6,7 +6,7 @@ const createEmployee = async (req, res) => {
     try {
         const newEmployee = await Employee.create(bodyData); //Cria usando o model
 
-        newMedic.save();
+        newemployee.save();
 
         return res.status(201).json({
             status: 'Success',
@@ -28,7 +28,7 @@ const getEmployees = async (req, res) => {
         return res.status(200).json({
             status: 'Success',
             req_time: req.requestTime,
-            results: medics.length,
+            results: employees.length,
             employees
         });
     } catch (err) {

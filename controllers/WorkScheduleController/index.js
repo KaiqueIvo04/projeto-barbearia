@@ -1,4 +1,4 @@
-import WorkSchedule from '../../models/WorkSchedule';
+const WorkSchedule = require('../../models/WorkSchedule');
 
 const createWorkSchedule = async (req, res) => {
     const bodyData = req.body; //Pega o body da requisição
@@ -6,7 +6,7 @@ const createWorkSchedule = async (req, res) => {
     try {
         const newWorkSchedule = await WorkSchedule.create(bodyData); //Cria usando o model
 
-        newMedic.save();
+        newworkSchedule.save();
 
         return res.status(201).json({
             status: 'Success',
@@ -28,7 +28,7 @@ const getWorkSchedules = async (req, res) => {
         return res.status(200).json({
             status: 'Success',
             req_time: req.requestTime,
-            results: medics.length,
+            results: workSchedules.length,
             workSchedules
         });
     } catch (err) {

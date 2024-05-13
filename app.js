@@ -2,15 +2,17 @@ require('dotenv').config(); //Iniciar configuração do .env
 const Express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocs = require('./swageer.json');
+// const swaggerUi = require('swagger-ui-express');
+// const swaggerDocs = require('./swageer.json');
 
-const athleteRoute = require('./routes/AthleteRoutes');
+const adminRoute = require('./routes/AdminRoutes');
 const authRoute = require('./routes/AuthRoutes');
-const medicRoute = require('./routes/MedicRoutes');
-const medicalRegisterRoute = require('./routes/MedicalRegisterRoutes');
-const appointmentsRoute = require('./routes/AppointmentRoutes');
-const injuryRoute = require('./routes/InjuryRoutes');
+const clientRoute = require('./routes/ClientRoutes');
+const employeeRoute = require('./routes/EmployeeRoutes');
+const scheduleRoute = require('./routes/ScheduleRoutes');
+const serviceRoute = require('./routes/ServiceRoutes');
+const serviceScheduleRoute = require('./routes/ServiceScheduleRoutes');
+const workScheduleRoute = require('./routes/WorkScheduleRoutes');
 
 
 const server = new Express(); //Objeto do server
@@ -18,7 +20,7 @@ const server = new Express(); //Objeto do server
 //---------------Middlewares-------------
 server.use(Express.json()); //Para o server entender json
 
-server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+// server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 server.use(helmet());   //Para medidas de segurança
 
@@ -40,11 +42,13 @@ server.use((req, res, next) => {
 })
 
 //Rotas para serem usadas
-server.use('/api/v1/athletes', athleteRoute);
+server.use('/api/v1/admins', adminRoute);
 server.use('/api/v1/auth', authRoute);
-server.use('/api/v1/medics', medicRoute);
-server.use('/api/v1/medicalRegisters', medicalRegisterRoute);
-server.use('/api/v1/appointments', appointmentsRoute);
-server.use('/api/v1/injuryRegisters', injuryRoute);
+server.use('/api/v1/clients', clientRoute);
+server.use('/api/v1/employees', employeeRoute);
+server.use('/api/v1/services', serviceRoute)
+server.use('/api/v1/workschedules', workScheduleRoute)
+server.use('/api/v1/schedules', scheduleRoute);
+server.use('/api/v1/serviceschedules', serviceScheduleRoute);
 
 module.exports = server;

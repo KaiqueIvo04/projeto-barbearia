@@ -1,11 +1,12 @@
-import Express from 'express'
+const Express = require('express');
 
-//-----------------Roteador-----------------
+//Roteador
 const authRoute = Express.Router();
 
+
 //-------------Funções para Login------------------
-import { getMe, protect, login, register } from '../../controllers/AuthController/index';
-import { getAdminById } from '../../controllers/AdminController';
+const { getMe, protect, login, register } = require('../../controllers/AuthController/index');
+const { getAdminById } = require('../../controllers/AdminController');
 
 authRoute.route('/login')
     .post(login);
@@ -17,7 +18,7 @@ authRoute.route('/register')
 authRoute.route('/me')
     .get(protect, getMe, getAdminById); //Quando terminar o front tentar excluir isso e usar o JWT decode
 
-export default authRoute;
+module.exports = authRoute;
 
 
 

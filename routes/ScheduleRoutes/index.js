@@ -1,15 +1,14 @@
-import { Router } from 'express';
-
+const Express = require('express');
 //Roteador
-const scheduleRoute = Router();
+const scheduleRoute = Express.Router();
 
 //Funções
 
-import { createSchedule, 
+const { createSchedule, 
     getSchedules, 
     getScheduleById, 
     updateSchedule, 
-    deleteSchedule } from '../../controllers/ScheduleController/index';
+    deleteSchedule } = require('../../controllers/ScheduleController/index');
 
 //rotas 
 
@@ -22,4 +21,4 @@ scheduleRoute.route('/:id')
     .patch(updateSchedule) 
     .delete(deleteSchedule) 
 
-export default scheduleRoute;
+module.exports = scheduleRoute;

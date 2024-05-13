@@ -1,4 +1,4 @@
-import Admin from '../../models/Admin';
+const Admin = require('../../models/Admin');
 
 const createAdmin = async (req, res) => {
     const bodyData = req.body; //Pega o body da requisição
@@ -6,7 +6,7 @@ const createAdmin = async (req, res) => {
     try {
         const newAdmin = await Admin.create(bodyData); //Cria usando o model
 
-        newMedic.save();
+        newAdmin.save();
 
         return res.status(201).json({
             status: 'Success',
@@ -28,7 +28,7 @@ const getAdmins = async (req, res) => {
         return res.status(200).json({
             status: 'Success',
             req_time: req.requestTime,
-            results: medics.length,
+            results: admins.length,
             admins
         });
     } catch (err) {

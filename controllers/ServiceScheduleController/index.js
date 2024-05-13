@@ -1,4 +1,4 @@
-import ServiceSchedule from '../../models/ServiceSchedule';
+const ServiceSchedule = require('../../models/ServiceSchedule');
 
 const createServiceSchedule = async (req, res) => {
     const bodyData = req.body; //Pega o body da requisição
@@ -6,7 +6,7 @@ const createServiceSchedule = async (req, res) => {
     try {
         const newServiceSchedule = await ServiceSchedule.create(bodyData); //Cria usando o model
 
-        newMedic.save();
+        newserviceSchedule.save();
 
         return res.status(201).json({
             status: 'Success',
@@ -28,7 +28,7 @@ const getServiceSchedules = async (req, res) => {
         return res.status(200).json({
             status: 'Success',
             req_time: req.requestTime,
-            results: medics.length,
+            results: serviceSchedules.length,
             serviceSchedules
         });
     } catch (err) {

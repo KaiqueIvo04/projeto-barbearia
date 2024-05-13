@@ -1,10 +1,10 @@
 require('dotenv').config;
-import Admin from '../../models/Admin';
-import Employee from '../../models/Employee';
-import Client from '../../models/Client';
-import bcrypt from 'bcrypt';
-import { promisify } from 'util';
-import jwt from 'jsonwebtoken';
+const Admin = require('../../models/Admin');
+const Employee = require('../../models/Employee');
+const Client = require('../../models/Client');
+const bcrypt = require('bcrypt');
+const { promisify } = require('util');
+const jwt = require('jsonwebtoken');
 
 const getMe = (req, res, next) => {
     req.params.id = req.user.id;

@@ -1,15 +1,14 @@
-import { Router } from 'express';
-
+const Express = require('express');
 //Roteador
-const workScheduleRoute = Router();
+const workScheduleRoute = Express.Router();
 
 //Funções
 
-import { createWorkSchedule, 
+const { createWorkSchedule, 
     getWorkSchedules, 
     getWorkScheduleById, 
     updateWorkSchedule, 
-    deleteWorkSchedule } from '../../controllers/WorkScheduleController/index';
+    deleteWorkSchedule } = require('../../controllers/WorkScheduleController/index');
 
 //rotas 
 
@@ -22,4 +21,4 @@ workScheduleRoute.route('/:id')
     .patch(updateWorkSchedule) 
     .delete(deleteWorkSchedule) 
 
-export default workScheduleRoute;
+module.exports = workScheduleRoute;

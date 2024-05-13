@@ -1,4 +1,4 @@
-import Service from '../../models/Service';
+const Service = require('../../models/Service');
 
 const createService = async (req, res) => {
     const bodyData = req.body; //Pega o body da requisição
@@ -6,7 +6,7 @@ const createService = async (req, res) => {
     try {
         const newService = await Service.create(bodyData); //Cria usando o model
 
-        newMedic.save();
+        newservice.save();
 
         return res.status(201).json({
             status: 'Success',
@@ -28,7 +28,7 @@ const getServices = async (req, res) => {
         return res.status(200).json({
             status: 'Success',
             req_time: req.requestTime,
-            results: medics.length,
+            results: services.length,
             services
         });
     } catch (err) {

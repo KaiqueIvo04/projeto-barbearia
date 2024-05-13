@@ -1,4 +1,4 @@
-import Client from '../../models/Client';
+const Client = require('../../models/Client');
 
 const createClient = async (req, res) => {
     const bodyData = req.body; //Pega o body da requisição
@@ -6,7 +6,7 @@ const createClient = async (req, res) => {
     try {
         const newClient = await Client.create(bodyData); //Cria usando o model
 
-        newMedic.save();
+        newclient.save();
 
         return res.status(201).json({
             status: 'Success',
@@ -28,7 +28,7 @@ const getClients = async (req, res) => {
         return res.status(200).json({
             status: 'Success',
             req_time: req.requestTime,
-            results: medics.length,
+            results: clients.length,
             clients
         });
     } catch (err) {

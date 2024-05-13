@@ -1,15 +1,15 @@
-import { Router } from 'express';
+const Express = require('express');
 
 //Roteador
-const employeeRoute = Router();
+const employeeRoute = Express.Router();
 
 //Funções
 
-import { createEmployee, 
+const { createEmployee, 
     getEmployees, 
     getEmployeeById, 
     updateEmployee, 
-    deleteEmployee } from '../../controllers/EmployeeController/index';
+    deleteEmployee } = require('../../controllers/EmployeeController/index');
 
 //rotas 
 
@@ -22,4 +22,4 @@ employeeRoute.route('/:id')
     .patch(updateEmployee) 
     .delete(deleteEmployee) 
 
-export default employeeRoute;
+module.exports = employeeRoute;

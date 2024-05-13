@@ -1,15 +1,15 @@
-import { Router } from 'express';
+const Express = require('express');
 
 //Roteador
-const clientRoute = Router();
+const clientRoute = Express.Router();
 
 //Funções
 
-import { createClient, 
+const { createClient, 
     getClients, 
     getClientById, 
     updateClient, 
-    deleteClient } from '../../controllers/ClientController/index';
+    deleteClient } = require('../../controllers/ClientController/index');
 
 //rotas 
 
@@ -22,4 +22,4 @@ clientRoute.route('/:id')
     .patch(updateClient) 
     .delete(deleteClient) 
 
-export default clientRoute;
+module.exports = clientRoute;

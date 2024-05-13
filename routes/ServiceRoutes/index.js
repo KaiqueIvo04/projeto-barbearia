@@ -1,15 +1,15 @@
-import { Router } from 'express';
+const Express = require('express');
 
 //Roteador
-const serviceRoute = Router();
+const serviceRoute = Express.Router();
 
 //Funções
 
-import { createService, 
+const { createService, 
     getServices, 
     getServiceById, 
     updateService, 
-    deleteService } from '../../controllers/ServiceController/index';
+    deleteService } = require('../../controllers/ServiceController/index');
 
 //rotas 
 
@@ -22,4 +22,4 @@ serviceRoute.route('/:id')
     .patch(updateService) 
     .delete(deleteService) 
 
-export default serviceRoute;
+module.exports = serviceRoute;
