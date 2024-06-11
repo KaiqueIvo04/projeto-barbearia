@@ -17,6 +17,7 @@ const signToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, {expiresIn: p
 //Proteger verificando se o token é válido
 const protect = async (req, res, next) => {
     let token;
+    
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
         token = req.headers.authorization.split(' ')[1];
     }
@@ -133,7 +134,7 @@ const register = async (req, res) => {
             password: passwordHash
         });
     }
-
+    console.log(newUser)
     //Enviar informações
     try {
         await newUser.save();

@@ -40,15 +40,20 @@ const getAdmins = async (req, res) => {
     }
 }
 
-const getAdminById = async (req, res) => {
+const getAdminById = async (req, res, next) => {
     const adminId = req.params.id
     try {
         const admin = await Admin.findById(adminId).select('-password');
-        return res.status(200).json({
-            status: 'Success',
-            reqTime: req.requestTime,
-            admin
-        });
+
+        if (admin) {
+            console.log(admin)
+            return res.status(200).json({
+                status: 'Success',
+                reqTime: req.requestTime,
+                admin
+            });
+        }
+        next(); //necessário para verificar o tipo de usuário a ser retornado na rota /me
     } catch (err) {
         return res.status(500).json({
             status: 'Error',

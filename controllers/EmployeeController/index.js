@@ -40,15 +40,18 @@ const getEmployees = async (req, res) => {
     }
 }
 
-const getEmployeeById = async (req, res) => {
+const getEmployeeById = async (req, res, next) => {
     const employeeId = req.params.id
     try {
         const employee = await Employee.findById(employeeId).select('-password');
-        return res.status(200).json({
-            status: 'Success',
-            reqTime: req.requestTime,
-            employee
-        });
+        if (employee) {
+            return res.status(200).json({
+                status: 'Success',
+                reqTime: req.requestTime,
+                employee
+            });
+        }
+        next(); //necessário para verificar o tipo de usuário a ser retornado na rota /me
     } catch (err) {
         return res.status(500).json({
             status: 'Error',
