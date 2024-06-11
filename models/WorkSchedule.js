@@ -7,7 +7,7 @@ const Schema = new mongoose.Schema({
         required: [true, "Funcionário responsável não definido"] //Necessário para criação inicial
     },
     day: {
-        type: String,
+        type: String, //Mudar para array de string
         required: [true, "Dia de trabalho não definido!"]
     },
     start_hour: {

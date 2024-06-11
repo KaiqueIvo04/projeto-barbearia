@@ -11,11 +11,8 @@ const getMe = (req, res, next) => {
     next();
 };
 
-const signToken = (id) => {
-    jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRATION_TIME,
-    });
-}
+const signToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRATION_TIME});
+
 
 //Proteger verificando se o token é válido
 const protect = async (req, res, next) => {
@@ -27,7 +24,7 @@ const protect = async (req, res, next) => {
     if (!token) {
         return res.status(401).json({ message: 'Você não está logado!'});
     }
-
+    
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET); //Cria a versão promisificada da função jwt.verify 
                                                                                 //e a chama imediatamente com token e process.env.JWT_SECRET
     const freshUser = await Admin.findById(decoded.id) 
@@ -58,9 +55,9 @@ const sendToken = (user, statusCode, res) => {
     res.status(statusCode).json({
         status: 'Success',
         token,
-        data: {
-            user,
-        },
+        // data: {
+        //     user,
+        // },
     });
 };
 
@@ -72,7 +69,10 @@ const login = async (req, res, next) => {
         return res.status(422).json({ message: 'Há informações faltantes!'});
     }
 
-    const user = await Medic.findOne({ email }).select('+password');
+    const user = await Admin.findOne({ email }).select('+password')
+              || await Employee.findOne({ email }).select('+password')
+              || await Client.findOne({ email }).select('+password')
+                
 
     if (!user || !(await user.correctPassword(password, user.password))) {
         return res.status(401).json({ message: 'E-mail ou senha incorretos!'})
@@ -100,7 +100,7 @@ const register = async (req, res) => {
         res.status(422).json({ message: 'As senhas não conferem!' });
     }
 
-    const userExists = await Medic.findOne({ email: email })
+    const userExists = await Admin.findOne({ email: email })
                     || await Employee.findOne({ email: email })
                     || await Client.findOne({ email: email });
 
@@ -112,21 +112,22 @@ const register = async (req, res) => {
     const salt = await bcrypt.genSalt(12);
     const passwordHash = await bcrypt.hash(password, salt);
 
+    let newUser
     //Criar novo usuáro
     if(userType === "admin") {
-        const newUser = await Admin.create({
+        newUser = await Admin.create({
             name,
             email,
             password: passwordHash
         });
     } else if (userType === "employee") {
-        const newUser = await Employee.create({
+        newUser = await Employee.create({
             name,
             email,
             password: passwordHash
         });
     } else if (userType === "client") {
-        const newUser = await Client.create({
+        newUser = await Client.create({
             name,
             email,
             password: passwordHash

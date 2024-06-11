@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt')
 
 const Schema = new mongoose.Schema({
     name: { //Nome
@@ -16,7 +17,12 @@ const Schema = new mongoose.Schema({
     contact_personal: {   //Contato pessoal  
         type: String,
         default: ""
+    },
+    userType: {
+        type: String,
+        default: "admin"
     }
+
 }, { timestamps: true });   //Adiciona 2 atributos (data que foi criado e data que foi atualizado)
 
 //Função necessária para verificação de senha no login

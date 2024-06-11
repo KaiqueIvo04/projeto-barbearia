@@ -6,7 +6,7 @@ const createEmployee = async (req, res) => {
     try {
         const newEmployee = await Employee.create(bodyData); //Cria usando o model
 
-        newemployee.save();
+        newEmployee.save();
 
         return res.status(201).json({
             status: 'Success',

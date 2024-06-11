@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const Schema = new mongoose.Schema({
     name: { //Nome
@@ -25,6 +26,10 @@ const Schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Admin',
         required: [true, "Administrador responsável não definido"] //Necessário para criação inicial
+    },
+    userType: {
+        type: String,
+        default: "employee"
     }
 }, { timestamps: true });   //Adiciona 2 atributos (data que foi criado e data que foi atualizado)
 
