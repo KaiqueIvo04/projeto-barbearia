@@ -6,7 +6,7 @@ const createWorkSchedule = async (req, res) => {
     try {
         const newWorkSchedule = await WorkSchedule.create(bodyData); //Cria usando o model
 
-        newworkSchedule.save();
+        newWorkSchedule.save();
 
         return res.status(201).json({
             status: 'Success',

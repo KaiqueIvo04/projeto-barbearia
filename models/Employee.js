@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const Schema = new mongoose.Schema({
+const Schema = new mongoose.Schema({//Verificar pq o bcrypt não funciona para funcionários
     name: { //Nome
         type: String,
         required: [true, "Nome do funcionário não definido!"]    //Necessário para criação inicial
@@ -21,6 +21,10 @@ const Schema = new mongoose.Schema({
     contact_personal: {   //Contato pessoal  
         type: String,
         default: ""
+    },
+    status: {
+        type: String,
+        default: "Disponível"
     },
     responsible_admin: {
         type: mongoose.Schema.Types.ObjectId,

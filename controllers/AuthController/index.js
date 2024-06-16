@@ -121,11 +121,13 @@ const register = async (req, res) => {
             email,
             password: passwordHash
         });
-    } else if (userType === "employee") {
+    } else if (userType === "employee" && req.body.responsible_admin && req.body.role) {
         newUser = await Employee.create({
             name,
             email,
-            password: passwordHash
+            password: passwordHash,
+            role: req.body.role,
+            responsible_admin: req.body.responsible_admin
         });
     } else if (userType === "client") {
         newUser = await Client.create({

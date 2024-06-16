@@ -6,7 +6,7 @@ const createSchedule = async (req, res) => {
     try {
         const newSchedule = await Schedule.create(bodyData); //Cria usando o model
 
-        newschedule.save();
+        newSchedule.save();
 
         return res.status(201).json({
             status: 'Success',

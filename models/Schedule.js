@@ -8,6 +8,7 @@ const Schema = new mongoose.Schema({
     },
     responsible_client: {
         type: mongoose.Schema.Types.ObjectId,
+        ref: 'Client',
         required: [true, "Cliente responsável não definido!"] //Necessário para criação inicial
     },
     date_schedule: {
@@ -16,7 +17,7 @@ const Schema = new mongoose.Schema({
     },
     status: {
         type: String,
-        default: "Agendada"
+        default: "Solicitada"
     },
     responsible_admin: {
         type: mongoose.Schema.Types.ObjectId,

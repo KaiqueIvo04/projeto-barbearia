@@ -6,7 +6,7 @@ const createService = async (req, res) => {
     try {
         const newService = await Service.create(bodyData); //Cria usando o model
 
-        newservice.save();
+        newService.save();
 
         return res.status(201).json({
             status: 'Success',
