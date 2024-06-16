@@ -11,7 +11,8 @@ const createSchedule = async (req, res) => {
         return res.status(201).json({
             status: 'Success',
             reqTime: req.requestTime,
-            message: 'Schedule created!'
+            message: 'Schedule created!',
+            schedule: newSchedule
         });
     } catch (err) {
         return res.status(500).json({
