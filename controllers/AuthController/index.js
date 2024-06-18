@@ -56,9 +56,6 @@ const sendToken = (user, statusCode, res) => {
     res.status(statusCode).json({
         status: 'Success',
         token,
-        // data: {
-        //     user,
-        // },
     });
 };
 
@@ -136,7 +133,7 @@ const register = async (req, res) => {
             password: passwordHash
         });
     }
-    console.log(newUser)
+
     //Enviar informações
     try {
         await newUser.save();
